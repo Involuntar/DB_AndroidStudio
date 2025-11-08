@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     ArrayList<HashMap<String,String >> items = new ArrayList<>();
                     HashMap<String,String> item;
-                    Cursor cursor3 = database.rawQuery("SELECT item_name, category_name " +
+                    Cursor cursor3 = database.rawQuery("SELECT item_name, category_name, description, price " +
                             "FROM items JOIN categories " +
                             "ON items.category_id = categories.id WHERE category_name = ?", new String[]{category_name});
                     cursor3.moveToFirst();
@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
                         item = new HashMap<>();
                         item.put("item_name", cursor3.getString(0));
                         item.put("category_name", cursor3.getString(1));
+                        item.put("description", cursor3.getString(2));
+                        item.put("price", cursor3.getString(3) + " ₽.");
                         items.add(item);
                         cursor3.moveToNext();
                     }
@@ -84,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
                             MainActivity.this,
                             items,
                             R.layout.listview_item,
-                            new String[]{"item_name", "category_name"},
-                            new int[]{R.id.itemName,R.id.itemCategory}
+                            new String[]{"item_name", "category_name", "description", "price"},
+                            new int[]{R.id.itemName,R.id.itemCategory,R.id.itemDesc,R.id.itemPrice}
                     );
 
                     listView = findViewById(R.id.listview_item);
