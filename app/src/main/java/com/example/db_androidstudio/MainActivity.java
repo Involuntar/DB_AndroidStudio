@@ -3,11 +3,9 @@ package com.example.db_androidstudio;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         filterButtons.addView(filter_button_all);
 
         while (!cursor1.isAfterLast()) {
-            String id = cursor1.getString(0);
             String category_name = cursor1.getString(1);
 
             Button filter_button = new Button(this);
