@@ -14,7 +14,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static String DB_NAME = "items.db";
     private static String DB_LOCATION;
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     private final Context myContext;
 

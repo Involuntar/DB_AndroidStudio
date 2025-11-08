@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                             items,
                             R.layout.listview_item,
                             new String[]{"item_name", "category_name"},
-                            new int[]{R.id.textPattern,R.id.textAchievement}
+                            new int[]{R.id.itemName,R.id.itemCategory}
                     );
 
                     listView = findViewById(R.id.listview_item);
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     private void getAllItems() {
         ArrayList<HashMap<String,String >> items = new ArrayList<>();
         HashMap<String,String> item;
-        Cursor cursor2 = database.rawQuery("SELECT item_name, category_name " +
+        Cursor cursor2 = database.rawQuery("SELECT item_name, category_name, description, price " +
                 "FROM items JOIN categories " +
                 "ON items.category_id = categories.id" , null);
         cursor2.moveToFirst();
@@ -113,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
             item = new HashMap<>();
             item.put("item_name", cursor2.getString(0));
             item.put("category_name", cursor2.getString(1));
+            item.put("description", cursor2.getString(2));
+            item.put("price", cursor2.getString(3) + " ₽.");
             items.add(item);
             cursor2.moveToNext();
         }
@@ -122,8 +124,8 @@ public class MainActivity extends AppCompatActivity {
                 this,
                 items,
                 R.layout.listview_item,
-                new String[]{"item_name", "category_name"},
-                new int[]{R.id.textPattern,R.id.textAchievement}
+                new String[]{"item_name", "category_name", "description", "price"},
+                new int[]{R.id.itemName,R.id.itemCategory,R.id.itemDesc,R.id.itemPrice}
         );
 
         listView = findViewById(R.id.listview_item);
